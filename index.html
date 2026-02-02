@@ -1,200 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Be My Valentine 💖</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap');
 
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffdde1, #ff758c);
-  background-size: 400% 400%;
-  animation: gradientMove 10s ease infinite;
+  align-items: center;
   font-family: 'Poppins', sans-serif;
+  background: linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffdde1,#ff758c);
+  background-size: 400% 400%;
+  animation: bg 10s ease infinite;
   overflow: hidden;
-  position: relative;
+  padding: 16px;
 }
 
-@keyframes gradientMove {
+@keyframes bg {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
 .container {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-radius: 28px;
+  padding: 32px 22px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.85);
-  padding: 60px 80px;
-  border-radius: 25px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.15);
-  backdrop-filter: blur(10px);
-  animation: pop 1s ease;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+  animation: pop 0.8s ease;
   position: relative;
-  min-width: 600px;
-  min-height: 400px;
 }
 
 @keyframes pop {
-  from { transform: scale(0.7); opacity: 0; }
+  from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
 h1 {
-  color: #ff4e78;
-  margin-bottom: 10px;
   font-family: 'Pacifico', cursive;
-  font-size: 40px;
+  color: #ff4e78;
+  font-size: 28px;
+  margin-bottom: 8px;
 }
 
-.subtext {
-  color: #555;
-  margin-bottom: 20px;
+.sub {
   font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
 }
 
 .buttons {
-  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
 }
 
 button {
-  padding: 12px 28px;
-  font-size: 18px;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 999px;
   border: none;
-  border-radius: 50px;
-  margin: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
+  width: 100%;
 }
 
 #yesBtn {
-  background-color: #ff4e78;
+  background: #ff4e78;
   color: white;
-  box-shadow: 0 0 10px rgba(255, 78, 120, 0.5);
-}
-
-#yesBtn:hover {
-  background-color: #ff1e56;
-  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255,78,120,0.6);
 }
 
 #noBtn {
-  background-color: #444;
+  background: #444;
   color: white;
-  transition: left 0.25s ease, top 0.25s ease;
-  position: relative;
 }
 
 #message {
-  margin-top: 15px;
-  font-size: 16px;
-  color: #ff4e78;
-  font-weight: bold;
+  margin-top: 18px;
+  font-size: 14px;
   min-height: 22px;
+  color: #ff4e78;
 }
 
+.hidden { display: none; }
+
+/* YES SCREEN */
+#yesScreen h1 {
+  font-size: 42px;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px white; }
+  to { text-shadow: 0 0 28px pink; }
+}
+
+#yesScreen p {
+  font-size: 18px;
+  color: white;
+}
+
+/* Floating hearts */
 .heart {
   position: absolute;
-  font-size: 18px;
+  font-size: 20px;
   animation: float 6s linear infinite;
-  opacity: 0.7;
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 @keyframes float {
-  from { transform: translateY(100vh); }
+  from { transform: translateY(110vh); }
   to { transform: translateY(-10vh); }
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
-
-  <h1>Shreya, will You Be My Valentine? 💘</h1>
-  <div class="subtext">Choose wisely... my heart is watching 👀</div>
+<div class="container" id="mainScreen">
+  <h1>Will You Be My Valentine? 💘</h1>
+  <div class="sub">Tap carefully… my heart is watching 😌</div>
 
   <div class="buttons">
-    <button id="yesBtn" onclick="goToYesPage()">YES 💖</button>
+    <button id="yesBtn">YES 💖</button>
     <button id="noBtn">NO 💔</button>
   </div>
 
   <div id="message"></div>
 </div>
 
+<div class="container hidden" id="yesScreen">
+  <h1>YAYYYYY 💞</h1>
+  <p>You just made my world sparkle ✨</p>
+  <p>Best decision ever 💖</p>
+</div>
+
 <script>
 const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
 const message = document.getElementById("message");
+const mainScreen = document.getElementById("mainScreen");
+const yesScreen = document.getElementById("yesScreen");
 
-const texts = [
-  "Nope, try again cutie 😉",
-  "Are you sure about that? 😏",
-  "My heart says click YES 💓",
-  "Wrong answer detected 😌",
-  "You can't escape love 😄",
-  "Nice try, sweetheart 😜",
-  "The YES button misses you 🥺",
-  "Resistance is futile 💘",
-  "Come onnn, you know you want to 😚",
-  "Even destiny says YES ✨"
+let noCount = 0;
+let yesScale = 1;
+
+const flirtTexts = [
+  "Are you sure? 😌",
+  "Really really sure? 💭",
+  "My heart just flinched 💔",
+  "This feels illegal 😳",
+  "Imagine us together 💞",
+  "Last chance ✨",
+  "Confirm your feelings 😏",
+  "Okay fine 😤 confirm"
 ];
 
-noBtn.addEventListener("mouseover", function () {
-  const padding = 15;
-  
-  // Get container dimensions and position
-  const container = document.querySelector('.container');
-  const containerRect = container.getBoundingClientRect();
-  
-  // Get button dimensions
-  const rect = noBtn.getBoundingClientRect();
-  const btnWidth = rect.width;
-  const btnHeight = rect.height;
-  
-  // Calculate safe boundaries within the container
-  const maxX = containerRect.width - btnWidth - padding;
-  const maxY = containerRect.height - btnHeight - padding;
-  const minX = padding;
-  const minY = padding;
-  
-  // Generate random position within container bounds
-  let newX = Math.random() * (maxX - minX) + minX;
-  let newY = Math.random() * (maxY - minY) + minY;
-  
-  // Apply new position (absolute within container)
-  noBtn.style.position = "absolute";
-  noBtn.style.left = newX + "px";
-  noBtn.style.top = newY + "px";
+// MOBILE + DESKTOP SAFE (tap/click)
+noBtn.addEventListener("click", () => {
+  noCount++;
 
-  // Display random flirty message
-  message.innerText = texts[Math.floor(Math.random() * texts.length)];
+  yesScale += 0.14;
+  yesBtn.style.transform = `scale(${yesScale})`;
+
+  if (noCount < flirtTexts.length) {
+    noBtn.innerText = flirtTexts[noCount];
+    message.innerText = "That didn’t sound convincing 😌";
+  } else {
+    noBtn.innerText = "Confirm 💖";
+    noBtn.style.background = "#ff4e78";
+    message.innerText = "You already know the answer 😏";
+  }
+
+  // Gentle wiggle (mobile-safe)
+  const x = Math.random() * 16 - 8;
+  const y = Math.random() * 10 - 5;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
 });
 
-function goToYesPage() {
-  window.location.href = "yes.html";
-}
+yesBtn.addEventListener("click", () => {
+  mainScreen.classList.add("hidden");
+  yesScreen.classList.remove("hidden");
+});
 
-// cute floating hearts
+// Floating hearts
 function createHeart() {
   const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "💗";
+  heart.className = "heart";
+  heart.innerHTML = "💖";
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.animationDuration = Math.random() * 3 + 3 + "s";
   document.body.appendChild(heart);
-
   setTimeout(() => heart.remove(), 6000);
 }
 
-setInterval(createHeart, 400);
+setInterval(createHeart, 450);
 </script>
 
 </body>
