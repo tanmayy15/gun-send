@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Be My Valentine 💖</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap');
+<!-- 🌸 PREMIUM FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
 
+<style>
 * { box-sizing: border-box; }
 
 body {
@@ -16,7 +17,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   background: linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffdde1,#ff758c);
   background-size: 400% 400%;
   animation: bg 10s ease infinite;
@@ -33,37 +34,52 @@ body {
 .container {
   width: 100%;
   max-width: 420px;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
-  border-radius: 28px;
-  padding: 32px 22px;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  border-radius: 30px;
+  padding: 34px 24px;
   text-align: center;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.18);
   animation: pop 0.8s ease;
   position: relative;
 }
 
 @keyframes pop {
-  from { transform: scale(0.8); opacity: 0; }
+  from { transform: scale(0.85); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
+/* 🌸 HEADINGS */
 h1 {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Playfair Display', serif;
   color: #ff4e78;
-  font-size: 28px;
-  margin-bottom: 8px;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  margin-bottom: 10px;
 }
 
+/* romantic accent */
+.name-accent {
+  font-family: 'Great Vibes', cursive;
+  font-size: 34px;
+  display: block;
+  margin-top: 4px;
+}
+
+/* 🌸 SUBTEXT */
 .sub {
-  font-size: 14px;
+  font-size: 14.5px;
   color: #666;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
+/* 🌸 BUTTONS */
 .buttons {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   flex-direction: column;
 }
 
@@ -73,44 +89,67 @@ button {
   border-radius: 999px;
   border: none;
   cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.3px;
   transition: all 0.35s ease;
   width: 100%;
 }
 
+/* 💓 YES BUTTON */
 #yesBtn {
   background: #ff4e78;
   color: white;
-  box-shadow: 0 0 15px rgba(255,78,120,0.6);
+  box-shadow: 0 0 18px rgba(255,78,120,0.6);
+  animation: heartbeat 1.6s infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.07); }
+  40% { transform: scale(1); }
+  60% { transform: scale(1.12); }
+  100% { transform: scale(1); }
 }
 
 #noBtn {
-  background: #444;
+  background: #3f3f3f;
   color: white;
 }
 
+/* 🌸 MESSAGE */
 #message {
-  margin-top: 18px;
+  margin-top: 20px;
   font-size: 14px;
   min-height: 22px;
   color: #ff4e78;
+  font-weight: 500;
 }
 
 .hidden { display: none; }
 
-/* YES SCREEN */
+/* 💖 YES SCREEN */
+#yesScreen {
+  background: radial-gradient(circle,#ff9a9e,#ff758c);
+  color: white;
+}
+
 #yesScreen h1 {
-  font-size: 42px;
+  font-size: 40px;
+  font-weight: 600;
   animation: glow 1.5s infinite alternate;
 }
 
 @keyframes glow {
   from { text-shadow: 0 0 10px white; }
-  to { text-shadow: 0 0 28px pink; }
+  to { text-shadow: 0 0 30px pink; }
 }
 
 #yesScreen p {
   font-size: 18px;
-  color: white;
+  margin: 10px 0;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 /* Floating hearts */
@@ -118,7 +157,7 @@ button {
   position: absolute;
   font-size: 20px;
   animation: float 6s linear infinite;
-  opacity: 0.8;
+  opacity: 0.85;
   pointer-events: none;
 }
 
@@ -132,8 +171,14 @@ button {
 <body>
 
 <div class="container" id="mainScreen">
-  <h1>Will You Be My Valentine? 💘</h1>
-  <div class="sub">Tap carefully… my heart is watching 😌</div>
+  <h1>
+    Will you be my Valentine?
+    <span class="name-accent">Shreya</span>
+  </h1>
+
+  <div class="sub">
+    Take a moment… my heart is beating just for you 💓
+  </div>
 
   <div class="buttons">
     <button id="yesBtn">YES 💖</button>
@@ -145,8 +190,10 @@ button {
 
 <div class="container hidden" id="yesScreen">
   <h1>YAYYYYY 💞</h1>
-  <p>You just made my world sparkle ✨</p>
-  <p>Best decision ever 💖</p>
+  <p>Shreya, you just made my heart skip a beat 💓</p>
+  <p>This moment already feels like a beautiful memory ✨</p>
+  <p>Smiles, love, and endless warmth… all for you 💕</p>
+  <p>Forever grateful you said yes 💖</p>
 </div>
 
 <script>
@@ -160,36 +207,27 @@ let noCount = 0;
 let yesScale = 1;
 
 const flirtTexts = [
-  "Are you sure? 😌",
-  "Really really sure? 💭",
-  "My heart just flinched 💔",
-  "This feels illegal 😳",
-  "Imagine us together 💞",
-  "Last chance ✨",
-  "Confirm your feelings 😏",
-  "Okay fine 😤 confirm"
+  "Are you sure? 😌","Really sure? 💭","Think again 😏","My heart felt that 💔",
+  "That hurt a little 😳","Try again, love 💕","This feels illegal 😤",
+  "Imagine us together 💞","Still no? 😶","My heart is begging 🥺",
+  "You’re teasing me 😌","I’m not giving up 😤","Destiny says YES ✨",
+  "Stop pretending 😏","You know you want to 💓","Almost there 😳",
+  "This is obvious 💖","Just say it 😌","CONFIRM IT 😤","Confirm 💖"
 ];
 
-// MOBILE + DESKTOP SAFE (tap/click)
 noBtn.addEventListener("click", () => {
   noCount++;
-
-  yesScale += 0.14;
+  yesScale += 0.12;
   yesBtn.style.transform = `scale(${yesScale})`;
 
   if (noCount < flirtTexts.length) {
     noBtn.innerText = flirtTexts[noCount];
-    message.innerText = "That didn’t sound convincing 😌";
+    message.innerText = "That didn’t feel honest 😌";
   } else {
     noBtn.innerText = "Confirm 💖";
     noBtn.style.background = "#ff4e78";
-    message.innerText = "You already know the answer 😏";
+    message.innerText = "We both know the answer 😏";
   }
-
-  // Gentle wiggle (mobile-safe)
-  const x = Math.random() * 16 - 8;
-  const y = Math.random() * 10 - 5;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
 });
 
 yesBtn.addEventListener("click", () => {
@@ -197,7 +235,6 @@ yesBtn.addEventListener("click", () => {
   yesScreen.classList.remove("hidden");
 });
 
-// Floating hearts
 function createHeart() {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -207,7 +244,6 @@ function createHeart() {
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 6000);
 }
-
 setInterval(createHeart, 450);
 </script>
 
