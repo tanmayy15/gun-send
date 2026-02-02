@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yay! 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap');
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #ffafbd, #ffc3a0);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  color: white;
+  animation: appear 1.5s ease;
+}
+
+@keyframes appear {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+h1 {
+  font-size: 60px;
+  animation: glow 1.5s infinite alternate;
+  font-family: 'Pacifico', cursive;
+}
+
+p {
+  font-size: 22px;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px white; }
+  to { text-shadow: 0 0 30px pink; }
+}
+
+.heart {
+  position: absolute;
+  color: #ff4e78;
+  font-size: 26px;
+  animation: fall linear infinite;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 16px;
+  animation: twinkle 1.5s infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10vh); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h1>YAYYYYY! 💞</h1>
+  <p>You just made my world sparkle ✨</p>
+  <p>Best decision everrr 💖</p>
+</div>
+
+<script>
+function createHearts() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 5000);
+}
+
+function createSparkle() {
+  const s = document.createElement("div");
+  s.classList.add("sparkle");
+  s.innerHTML = "✨";
+
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.top = Math.random() * 100 + "vh";
+
+  document.body.appendChild(s);
+
+  setTimeout(() => s.remove(), 1500);
+}
+
+setInterval(createHearts, 200);
+setInterval(createSparkle, 400);
+</script>
+
+</body>
+</html>
